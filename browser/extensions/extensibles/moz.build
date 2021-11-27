@@ -1,0 +1,52 @@
+# -*- Mode: python; indent-tabs-mode: nil; tab-width: 40 -*-
+# vim: set filetype=python:
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+DIRS += ['locales']
+
+XPCSHELL_TESTS_MANIFESTS += [
+    'test/unit/xpcshell.ini',
+]
+
+XPCOM_MANIFESTS += [
+    'components.conf',
+]
+
+EXTRA_JS_MODULES += [
+  'content/AddonStores.jsm',
+  'content/BrowserUtils.jsm',
+  'content/PrefUtils.jsm',
+  'content/StoreHandler.jsm',
+  'privatetab/PrivateTab.jsm',
+  'statusbar/StatusBar.jsm',
+  'tabfeatures/TabFeatures.jsm',
+]
+
+FINAL_TARGET_FILES.features['extensibles@waterfox.net'] += [
+  'api.js',
+  'manifest.json',
+  'schema.json',
+]
+
+FINAL_TARGET_FILES.features['extensibles@waterfox.net']['privatetab'] += [
+  'privatetab/background.js',
+]
+
+FINAL_TARGET_FILES.features['extensibles@waterfox.net']['statusbar'] += [
+  'statusbar/background.js',
+]
+
+FINAL_TARGET_FILES.features['extensibles@waterfox.net']['tabfeatures'] += [
+  'tabfeatures/background.js',
+]
+
+FINAL_TARGET_FILES.features['extensibles@waterfox.net']['addon-stores'] += [
+  'addon-stores/cws.js',
+  'addon-stores/ows.js',
+]
+
+FINAL_TARGET_FILES.features['extensibles@waterfox.net']['_locales']['en'] += [
+  '_locales/en/messages.json',
+]

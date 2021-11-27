@@ -1,0 +1,88 @@
+{
+  "data": [
+    {
+      "default": "yes",
+      "schema": 1000000000000,
+      "appliesTo": [{
+        "included": {
+          "everywhere": true
+        }
+      }],
+      "webExtension": {
+        "id": "bing@search.waterfox.net"
+      },
+      "id": "7ec766f6-639a-4618-91bc-33eb3d4378c6",
+      "last_modified": 1000000000000
+    },
+    {
+      "default": "no",
+      "schema": 1000000000000,
+      "appliesTo": [{
+        "included": {
+          "everywhere": true
+        }
+      }],
+      "webExtension": {
+        "id": "startpage@search.waterfox.net"
+      },
+      "id": "d9c37e2a-b885-4580-b64b-e6d970e22619",
+      "last_modified": 1000000000000
+    },
+    {
+      "default": "no",
+      "schema": 1000000000000,
+      "appliesTo": [{
+        "included": {
+          "everywhere": true
+        }
+      }],
+      "webExtension": {
+        "id": "yahoo@search.waterfox.net"
+      },
+      "id": "9c8179eb-a35a-48a9-b9da-0b63085c4f54",
+      "last_modified": 1000000000000
+    },
+    {
+      "default": "no",
+      "schema": 1000000000000,
+      "appliesTo": [{
+        "included": {
+          "everywhere": true
+        }
+      }],
+      "webExtension": {
+        "id": "google@search.waterfox.net"
+      },
+      "id": "cb8e7210-9f0b-48fa-8708-b9a03df79eea",
+      "last_modified": 1000000000000
+    },
+    {
+      "default": "no",
+      "schema": 1000000000000,
+      "appliesTo": [{
+        "included": {
+          "everywhere": true
+        }
+      }],
+      "webExtension": {
+        "id": "ecosia@search.waterfox.net"
+      },
+      "id": "f7a3b046-7d41-4f23-9fdb-a02234b1e657",
+      "last_modified": 1000000000000
+    },
+    {
+      "default": "no",
+      "schema": 1000000000000,
+      "appliesTo": [{
+        "included": {
+          "everywhere": true
+        }
+      }],
+      "webExtension": {
+        "id": "ddg@search.waterfox.net"
+      },
+      "id": "594ea837-2fbd-403c-83a4-2f1234899bcb",
+      "last_modified": 1000000000000
+    }
+  ]
+}
