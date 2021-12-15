@@ -301,6 +301,20 @@ nsresult WebMDemuxer::ReadMetadata() {
         case NESTEGG_CODEC_AV1:
           mInfo.mVideo.mMimeType = "video/av1";
           break;
+        case NESTEGG_CODEC_AVC1: {
+          mInfo.mVideo.mMimeType = "video/avc";
+
+          unsigned char* data = 0;
+          size_t length = 0;
+          r = nestegg_track_codec_data(context, track, 0, &data, &length);
+          if (r == -1) {
+            return NS_ERROR_FAILURE;
+          }
+
+          mInfo.mVideo.mExtraData = new MediaByteBuffer(length);
+          mInfo.mVideo.mExtraData->AppendElements(data, length);
+          break;
+        }
         default:
           NS_WARNING("Unknown WebM video codec");
           return NS_ERROR_FAILURE;
@@ -387,6 +401,8 @@ nsresult WebMDemuxer::ReadMetadata() {
         OpusDataDecoder::AppendCodecDelay(
             mInfo.mAudio.mCodecSpecificConfig,
             TimeUnit::FromNanoseconds(params.codec_delay).ToMicroseconds());
+      } else if (mAudioCodec == NESTEGG_CODEC_AAC) {
+        mInfo.mAudio.mMimeType = "audio/mp4a-latm";
       }
       mSeekPreroll = params.seek_preroll;
       mInfo.mAudio.mRate = params.rate;
@@ -665,6 +681,9 @@ nsresult WebMDemuxer::GetNextPacket(TrackInfo::TrackType aType,
             }
             break;
 #endif
+          case NESTEGG_CODEC_AVC1:
+            isKeyframe = nestegg_packet_has_keyframe(holder->Packet());
+            break;
           default:
             NS_WARNING("Cannot detect keyframes in unknown WebM video codec");
             return NS_ERROR_FAILURE;
@@ -811,6 +830,12 @@ nsresult WebMDemuxer::GetNextPacket(TrackInfo::TrackType aType,
         }
       }
     }
+
+
+    if (mVideoCodec == NESTEGG_CODEC_AVC1) {
+      sample->mExtraData = mInfo.mVideo.mExtraData;
+    }
+
     aSamples->Push(sample);
   }
   return NS_OK;

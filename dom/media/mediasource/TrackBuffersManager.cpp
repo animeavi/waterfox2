@@ -991,6 +991,8 @@ void TrackBuffersManager::CreateDemuxerforMIMEType() {
   ShutdownDemuxers();
 
   if (mType.Type() == MEDIAMIMETYPE(VIDEO_WEBM) ||
+      mType.Type() == MEDIAMIMETYPE(VIDEO_MATROSKA) ||
+      mType.Type() == MEDIAMIMETYPE(AUDIO_MATROSKA) ||
       mType.Type() == MEDIAMIMETYPE(AUDIO_WEBM)) {
     mInputDemuxer =
         new WebMDemuxer(mCurrentInputBuffer, true /* IsMediaSource*/);
@@ -2137,6 +2139,8 @@ void TrackBuffersManager::InsertFrames(TrackBuffer& aSamples,
   if (trackBuffer.mBufferedRanges.IntersectsStrict(aIntervals)) {
     if (aSamples[0]->mKeyframe &&
         (mType.Type() == MEDIAMIMETYPE("video/webm") ||
+         mType.Type() == MEDIAMIMETYPE("video/x-matroska") ||
+         mType.Type() == MEDIAMIMETYPE("audio/x-matroska") ||
          mType.Type() == MEDIAMIMETYPE("audio/webm"))) {
       // We are starting a new GOP, we do not have to worry about breaking an
       // existing current coded frame group. Reset the next insertion index
